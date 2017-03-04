@@ -35,6 +35,7 @@ namespace MpkApi
             services.AddSingleton<IMpkApiClient, MpkApiClient>();
             services.AddSingleton<IStopsDatabaseConnection, StopsDatabaseConnection>();
             services.AddSingleton<PointsResolver>();
+            services.AddSingleton<StopsFinder>();
             services.AddSingleton<ShedulesDownloader>();
         }
 

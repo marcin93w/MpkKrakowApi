@@ -12,17 +12,21 @@ namespace MpkApi.Controllers
     public class ValuesController : Controller
     {
         private readonly PointsResolver _pointsResolver;
+        private readonly StopsFinder _stopsFinder;
 
-        public ValuesController(PointsResolver pointsResolver)
+        public ValuesController(PointsResolver pointsResolver, StopsFinder stopsFinder)
         {
             _pointsResolver = pointsResolver;
+            _stopsFinder = stopsFinder;
         }
 
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return
+                _stopsFinder.FindNearestStopGroupIds(20.1, 50.1, 10)
+                    .Select(stop => $"{stop.Name}, meters: {stop.Distance}");
         }
 
         // GET api/values/5

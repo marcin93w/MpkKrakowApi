@@ -21,10 +21,15 @@ namespace MpkApi.BusinessLogic.StopsDatabase
 
         public IEnumerable<dynamic> ExecuteQuery(string query, object param)
         {
+            return ExecuteQuery<dynamic>(query, param);
+        }
+
+        public IEnumerable<T> ExecuteQuery<T>(string query, object param)
+        {
             using (var dbConnection = Connection)
             {
                 dbConnection.Open();
-                return dbConnection.Query(query, param);
+                return dbConnection.Query<T>(query, param);
             }
         }
     }

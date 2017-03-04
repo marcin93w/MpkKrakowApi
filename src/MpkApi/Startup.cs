@@ -32,11 +32,10 @@ namespace MpkApi
             // Add framework services.
             services.AddMvc();
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddSingleton<IMpkApiClient, MpkApiClient>();
             services.AddSingleton<IStopsDatabaseConnection, StopsDatabaseConnection>();
             services.AddSingleton<PointsResolver>();
             services.AddSingleton<StopsFinder>();
-            services.AddSingleton<ShedulesDownloader>();
+            services.AddSingleton(new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient())));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,8 +9,11 @@ namespace MpkApi.Test
 {
     public class MpkApiClientStub : IMpkApiClient
     {
+        public int RequestsCount { private set; get; }
+
         public async Task<string> GetPointData(JObject jsonObject)
         {
+            RequestsCount++;
             return @"{
               ""d"": {
                 ""__type"": ""Ideo.BusinessLogic.PointData"",

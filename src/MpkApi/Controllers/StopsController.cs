@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MpkApi.BusinessLogic;
 using MpkApi.BusinessLogic.StopsDatabase;
 
 namespace MpkApi.Controllers
@@ -19,7 +18,7 @@ namespace MpkApi.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<StopFindResult> Get([FromQuery]double lon, [FromQuery] double lat)
+        public IEnumerable<StopFindResult> Get([FromQuery]double lon, [FromQuery]double lat)
         {
             return _stopsFinder.FindNearestStops(lon, lat, 10);
         }

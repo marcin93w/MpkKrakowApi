@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 
 namespace MpkApi.BusinessLogic.ShedulesApi
 {
-    public class ShedulesDownloader
+    public class ShedulesDownloader : IShedulesDownloader
     {
         private readonly IMpkApiClient _apiClient;
 

@@ -15,7 +15,7 @@ namespace MpkApi.BusinessLogic.StopsDatabase
             _database = database;
         }
 
-        public IEnumerable<StopFindResult> FindNearestStopGroupIds(double lon, double lat, int limit)
+        public IEnumerable<StopFindResult> FindNearestStops(double lon, double lat, int limit)
         {
             var query = @"SELECT 
 	            s.stop_group_id as StopGroupId,

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace MpkApi.BusinessLogic
+namespace MpkApi.BusinessLogic.ShedulesApi
 {
-    public class MpkApiClient
+    public class MpkApiClient : IMpkApiClient
     {
         private string _uri = "http://m.rozklady.mpk.krakow.pl/Services/data.asmx/GetPointData";
 

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace MpkApi.BusinessLogic
+namespace MpkApi.BusinessLogic.ShedulesApi
 {
     public class ShedulesDownloader
     {
@@ -36,9 +36,14 @@ namespace MpkApi.BusinessLogic
             {
                 StopName = stopName,
                 LineName = lineName,
-                Destination = route.Split('-').Last().TrimStart(' '),
+                Destination = GetLastStop(route),
                 Departures = GetDepartures(pointTime)
             };
+        }
+
+        private string GetLastStop(string route)
+        {
+            return route.Split('-').Last().TrimStart(' ');
         }
 
         private IEnumerable<DateTime> GetDepartures(JToken pointTime)

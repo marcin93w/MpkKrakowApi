@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MpkApi.BusinessLogic
+namespace MpkApi.BusinessLogic.ShedulesApi
 {
     public class Shedule
     {

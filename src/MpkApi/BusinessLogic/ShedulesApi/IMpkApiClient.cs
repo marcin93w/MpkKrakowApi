@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace MpkApi.BusinessLogic
+namespace MpkApi.BusinessLogic.ShedulesApi
 {
     public interface IMpkApiClient
     {

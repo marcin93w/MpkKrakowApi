@@ -4,12 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MpkApi.BusinessLogic;
+using MpkApi.BusinessLogic.StopsDatabase;
 
 namespace MpkApi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly PointsResolver _pointsResolver;
+
+        public ValuesController(PointsResolver pointsResolver)
+        {
+            _pointsResolver = pointsResolver;
+        }
+
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -21,7 +29,7 @@ namespace MpkApi.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+            return $"value: {string.Join(", ", _pointsResolver.GetPointsForStopGroupId(id))}";
         }
 
         // POST api/values

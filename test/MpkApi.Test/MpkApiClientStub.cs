@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MpkApi.BusinessLogic;
+using MpkApi.BusinessLogic.ShedulesApi;
 using Newtonsoft.Json.Linq;
 
 namespace MpkApi.Test

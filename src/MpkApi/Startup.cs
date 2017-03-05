@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MpkApi.BusinessLogic.LinesInfoDatabase;
 using MpkApi.BusinessLogic.ShedulesApi;
 using MpkApi.BusinessLogic.StopsDatabase;
 
@@ -35,6 +36,8 @@ namespace MpkApi
             services.AddSingleton<IStopsDatabaseConnection, StopsDatabaseConnection>();
             services.AddSingleton<PointsResolver>();
             services.AddSingleton<StopsFinder>();
+            services.AddSingleton<LinesInfoDatabaseConnection>();
+            services.AddSingleton<LinesFinder>();
             services.AddSingleton(new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient())));
         }
 

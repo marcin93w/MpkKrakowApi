@@ -12,7 +12,7 @@ namespace MpkApi.Controllers
     {
         private readonly StopsFinder _stopsFinder;
 
-        public StopsController(PointsResolver pointsResolver, StopsFinder stopsFinder)
+        public StopsController(StopsFinder stopsFinder)
         {
             _stopsFinder = stopsFinder;
         }

@@ -17,7 +17,8 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.Net.Http": "2.2.29",
     "Npgsql": "3.2.1",
-    "Dapper": "1.50.2"
+    "Dapper": "1.50.2",
+    "Microsoft.Data.Sqlite": "1.0.0"
   },
 
   "tools": {
@@ -35,7 +36,12 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
-    "preserveCompilationContext": true
+    "preserveCompilationContext": true,
+    "embed": {
+      "include": [
+        "Resources/*.zip"
+      ]
+    }
   },
 
   "runtimeOptions": {

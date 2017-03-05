@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
 
   "testRunner": "xunit",
@@ -10,7 +10,8 @@
     },
     "dotnet-test-xunit": "1.0.0-rc2-*",
     "xunit": "2.2.0",
-    "MpkApi": "1.0.0-*"
+    "MpkApi": "1.0.0-*",
+    "Moq": "4.7.1"
   },
   
   "frameworks": {

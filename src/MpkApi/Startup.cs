@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MpkApi.BusinessLogic;
 using MpkApi.BusinessLogic.LinesInfoDatabase;
 using MpkApi.BusinessLogic.ShedulesApi;
 using MpkApi.BusinessLogic.StopsDatabase;
@@ -38,7 +39,8 @@ namespace MpkApi
             services.AddSingleton<StopsFinder>();
             services.AddSingleton<LinesInfoDatabaseConnection>();
             services.AddSingleton<LinesFinder>();
-            services.AddSingleton(new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient())));
+            services.AddSingleton<IShedulesDownloader>(new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient())));
+            services.AddSingleton<DeparturesManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

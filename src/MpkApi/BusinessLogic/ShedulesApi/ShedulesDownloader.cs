@@ -51,15 +51,20 @@ namespace MpkApi.BusinessLogic.ShedulesApi
             foreach (var child in pointTime.Children())
             {
                 var hourProperty = (JProperty) child;
-                var hour = int.Parse(hourProperty.Name);
+                var hour = GetLeadingInt(hourProperty.Name);
 
                 foreach (var minuteValue in (JArray)hourProperty.Value)
                 {
-                    var minute = int.Parse(minuteValue.Value<string>());
+                    var minute = GetLeadingInt(minuteValue.Value<string>());
 
                     yield return DateTime.Today.AddHours(hour).AddMinutes(minute);
                 }
             }
+        }
+
+        private int GetLeadingInt(string input)
+        {
+            return int.Parse(new string(input.Trim().TakeWhile(c => char.IsDigit(c) || c == '.').ToArray()));
         }
     }
 }

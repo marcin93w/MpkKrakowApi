@@ -39,7 +39,10 @@ namespace MpkApi
             services.AddSingleton<StopsFinder>();
             services.AddSingleton<LinesInfoDatabaseConnection>();
             services.AddSingleton<LinesFinder>();
-            services.AddSingleton<IShedulesDownloader>(new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient())));
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetRequiredService<ILoggerFactory>().CreateLogger<ShedulesDownloader>();
+            services.AddSingleton<IShedulesDownloader>(
+                new ShedulesDownloaderWithCache(new ShedulesDownloader(new MpkApiClient()), logger));
             services.AddSingleton<DeparturesManager>();
         }
 

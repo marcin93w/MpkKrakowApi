@@ -30,14 +30,14 @@ namespace MpkApi.BusinessLogic.ShedulesApi
 
             var stopName = json.Value<string>("StopName");
             var route = json.Value<string>("Route");
-            var pointTime = json["PointTime"].First.First;
+            var pointTime = Equals(json["PointTime"], JValue.CreateNull()) ? null : json["PointTime"].First.First;
 
             return new Shedule
             {
                 StopName = stopName,
                 LineName = lineName,
-                Destination = GetLastStop(route),
-                Departures = GetDepartures(pointTime)
+                Destination = route == null ? null : GetLastStop(route),
+                Departures = pointTime == null ? Enumerable.Empty<DateTime>() : GetDepartures(pointTime)
             };
         }
 

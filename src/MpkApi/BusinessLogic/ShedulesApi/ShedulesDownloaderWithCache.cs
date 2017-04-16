@@ -25,10 +25,9 @@ namespace MpkApi.BusinessLogic.ShedulesApi
             var input = new Tuple<int, string, DateTime>(pointId, lineName, DateTime.Today);
             if (!_responsesCache.ContainsKey(input))
             {
+                _log.LogInformation($"Shedule for line {lineName} from point {pointId} is downloading from external API.");
+
                 var response = await _shedulesDownloader.DownloadShedule(pointId, lineName);
-
-                _log.LogInformation($"Shedule for line {lineName} from point {pointId} downloaded from external API.");
-
                 _responsesCache.Add(input, response);
             }
             else

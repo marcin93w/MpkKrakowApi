@@ -36,12 +36,13 @@ namespace MpkApi.BusinessLogic
                 var lines = _linesFinder.FindLineNamesForPoint(point);
                 foreach (var line in lines)
                 {
-                    var shedule = await _shedulesDownloader.DownloadShedule(point, line);
+                    var shedule = await _shedulesDownloader.DownloadShedule(point, line.Name);
 
-                    _log.LogInformation($"Found {shedule.Departures.Count()} departures of line {line} from point {point}.");
+                    _log.LogInformation(
+                        $"Found {shedule.Departures.Count()} departures of line {line.Name} to {line.Destination} from point {point}.");
 
                     departures.AddRange(
-                        shedule.Departures.Select(d => new Departure(shedule.LineName, shedule.Destination, d)));
+                        shedule.Departures.Select(time => new Departure(line.Name, line.Destination, time)));
                 }
             }
 

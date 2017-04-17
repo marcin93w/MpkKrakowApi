@@ -14,16 +14,16 @@ namespace MpkApi.BusinessLogic.LinesInfoDatabase
             _database = database;
         }
 
-        public IEnumerable<string> FindLineNamesForPoint(int pointId)
+        public IEnumerable<Line> FindLineNamesForPoint(int pointId)
         {
             var query = $@"
-                SELECT DISTINCT LineName
+                SELECT DISTINCT LineName, LastStopName
                 FROM Routes r
                 JOIN Variants v on (r.VariantId = v.Id)
                 WHERE r.PointId = {pointId}";
 
             var results = _database.ExecuteSelectQuery(query);
-            return results.Select(row => (string)row[0]);
+            return results.Select(row => new Line((string)row[0], (string)row[1]));
         }
     }
 }

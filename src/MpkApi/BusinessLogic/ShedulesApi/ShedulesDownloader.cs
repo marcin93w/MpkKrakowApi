@@ -27,23 +27,13 @@ namespace MpkApi.BusinessLogic.ShedulesApi
             };
             var data = await _apiClient.GetPointData(jsonObject);
             var json = JObject.Parse(data)["d"];
-
-            var stopName = json.Value<string>("StopName");
-            var route = json.Value<string>("Route");
+            
             var pointTime = Equals(json["PointTime"], JValue.CreateNull()) ? null : json["PointTime"].First.First;
 
             return new Shedule
             {
-                StopName = stopName,
-                LineName = lineName,
-                Destination = route == null ? null : GetLastStop(route),
                 Departures = pointTime == null ? Enumerable.Empty<DateTime>() : GetDepartures(pointTime)
             };
-        }
-
-        private string GetLastStop(string route)
-        {
-            return route.Split('-').Last().TrimStart(' ');
         }
 
         private IEnumerable<DateTime> GetDepartures(JToken pointTime)

@@ -20,7 +20,7 @@ namespace MpkApi.BusinessLogic.LinesInfoDatabase
                 SELECT DISTINCT LineName, LastStopName
                 FROM Routes r
                 JOIN Variants v on (r.VariantId = v.Id)
-                WHERE r.PointId = {pointId}";
+                WHERE r.PointId = {pointId} AND ""default"" = 1";
 
             var results = _database.ExecuteSelectQuery(query);
             return results.Select(row => new Line((string)row[0], (string)row[1]));
